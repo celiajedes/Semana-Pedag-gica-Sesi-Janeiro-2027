@@ -1,12 +1,302 @@
-<!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Semana Pedagogica 2027</title>
-<style>body{margin:0;font-family:Arial,sans-serif;background:#f6f9fd;color:#102b4e}.hero{padding:42px 6%;color:white;background:linear-gradient(125deg,#062d66,#0c4d97 65%,#1683b0)}h1{font-size:44px;margin:8px 0}.tag{font-size:22px}.wrap{max-width:1050px;margin:auto;padding:24px}.intro,.event{background:white;border:1px solid #dae6f2;border-radius:14px;padding:18px;margin-bottom:14px}.opening{border-left:5px solid #f4ce3e}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}button{border:1px solid #c9d9eb;background:white;color:#083773;padding:10px 13px;border-radius:9px;font-weight:bold;cursor:pointer}button.active{background:#083773;color:white}.event{display:grid;grid-template-columns:110px 1fr;gap:14px}.event h3{margin:0 0 5px}.time{font-weight:bold;color:#083773}.meta{font-size:13px;color:#60758b}.unit{background:#edf2f8}@media(max-width:600px){h1{font-size:34px}.event{grid-template-columns:1fr}.hero{padding:32px 20px}}</style></head>
-<body><header class="hero"><b>Sistema Fiep · SESI Parana</b><h1>Semana Pedagogica 2027</h1><div class="tag">Educacao e movimento. E comeca com a gente.</div><p>25 a 28 de janeiro</p></header><main class="wrap"><section class="intro opening"><b>Abertura · Seg 25/01 · 8h30 as 10h</b><h2>Abertura da Semana Pedagogica</h2><p>Gestao SESI · Todos os publicos<br>Palestrante: <strong>Em definicao</strong></p></section><h2>Programacao</h2><div class="tabs"><button class="active" data-day="all">Todos</button><button data-day="25">Seg 25/01</button><button data-day="26">Ter 26/01</button><button data-day="27">Qua 27/01</button><button data-day="28">Qui 28/01</button></div><section id="schedule"></section></main>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071d59">
+<title>Semana Pedagógica SESI | Janeiro 2027</title>
+<style>
+:root{
+  --navy:#071d59;--blue:#063b83;--cyan:#25d5ed;--violet:#7854d8;
+  --ink:#18345f;--muted:#61718e;--paper:#f5f8ff;--white:#fff;
+  --line:#dce6f5;--shadow:0 18px 48px rgba(5,29,83,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.6}
+a{color:inherit}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(5,25,76,.96);backdrop-filter:blur(12px);color:white;border-bottom:1px solid rgba(255,255,255,.12)}
+.nav{max-width:1180px;margin:auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:800;letter-spacing:.13em;font-size:.82rem;white-space:nowrap}
+.brand span{color:var(--cyan)}
+.navlinks{display:flex;gap:19px;flex-wrap:wrap}
+.navlinks a{text-decoration:none;font-size:.83rem;color:#e5efff;opacity:.9}
+.navlinks a:hover{color:var(--cyan)}
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 78% 85%,rgba(108,75,217,.42),transparent 36%),radial-gradient(ellipse at 45% 100%,rgba(0,191,235,.28),transparent 42%),linear-gradient(125deg,#061746,#092d78 62%,#071a52);color:white}
+.hero:before,.hero:after{content:"";position:absolute;inset:auto -10% -100px -10%;height:290px;border:1px solid rgba(48,211,244,.36);border-radius:50%;transform:rotate(-8deg);box-shadow:0 -18px 0 -1px rgba(115,83,223,.22),0 -38px 0 -1px rgba(48,211,244,.22),0 -58px 0 -1px rgba(115,83,223,.18),0 -78px 0 -1px rgba(48,211,244,.16),0 -98px 0 -1px rgba(115,83,223,.15)}
+.hero:after{transform:rotate(8deg);inset:auto -10% -130px -10%;opacity:.75}
+.hero-inner{position:relative;z-index:1;max-width:1180px;margin:auto;padding:82px 24px 110px}
+.eyebrow{text-transform:uppercase;letter-spacing:.24em;font-size:.82rem;color:#b9eefa;font-weight:700}
+.year{font-size:1.1rem;letter-spacing:.32em;color:var(--cyan);font-weight:800;margin:10px 0 30px}
+h1{font-size:clamp(3rem,8vw,6.3rem);line-height:.98;letter-spacing:-.055em;max-width:850px;margin:0 0 22px}
+.subtitle{font-size:clamp(1.15rem,2.5vw,1.75rem);color:#e1edff;max-width:680px;margin:0}
+.hero-note{margin-top:42px;display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.08);font-size:.9rem}
+main{max-width:1180px;margin:auto;padding:0 24px 80px}
+section{scroll-margin-top:90px;margin-top:66px}
+.section-kicker{color:#138db8;font-weight:800;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.12;color:var(--navy);margin:8px 0 18px;letter-spacing:-.035em}
+.lead{font-size:1.08rem;color:#365174;max-width:900px}
+.intro-card{background:white;border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+.quote{font-size:1.35rem;font-weight:750;color:var(--blue);border-left:4px solid var(--cyan);padding-left:18px;margin:24px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.info-card,.event-card,.day-card,.speaker-card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 26px rgba(5,29,83,.06)}
+.info-card h3,.event-card h3,.day-card h3,.speaker-card h3{color:var(--navy);margin:0 0 8px}
+.muted{color:var(--muted)}
+.pill{display:inline-block;background:#e7f8fc;color:#087c9f;padding:5px 10px;border-radius:999px;font-size:.74rem;font-weight:800;margin-bottom:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;background:var(--navy);color:white!important;border-radius:10px;padding:10px 14px;font-weight:750;font-size:.86rem;margin-top:12px;transition:.2s}
+.btn:hover{background:#0b438d;transform:translateY(-1px)}
+.btn.secondary{background:#eaf1ff;color:var(--navy)!important}
+.btn.secondary:hover{background:#dbe8ff}
+.opening{background:linear-gradient(120deg,#09245f,#0a4389);color:white;border-radius:22px;padding:30px;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;box-shadow:var(--shadow)}
+.opening h3{font-size:1.5rem;margin:0 0 8px}
+.opening p{color:#e0edff}
+.opening .small-label{color:#8eeeff;text-transform:uppercase;letter-spacing:.13em;font-size:.72rem;font-weight:800}
+.person{padding:12px 0;border-top:1px solid rgba(255,255,255,.18)}
+.person strong{display:block}
+.schedule{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.day-card{padding:17px}
+.day-head{border-bottom:2px solid #d9e8fb;padding-bottom:12px;margin-bottom:12px}
+.day-head .date{font-size:1.35rem;font-weight:900;color:var(--blue)}
+.session{border-left:3px solid var(--cyan);padding:9px 10px;margin:10px 0;background:#f4f8ff;border-radius:0 9px 9px 0}
+.session time{display:block;font-size:.75rem;color:#087eaa;font-weight:800}
+.session strong{display:block;font-size:.86rem;line-height:1.3;color:var(--navy)}
+.session small{display:block;color:var(--muted);font-size:.74rem;margin-top:4px}
+.session.unit{border-color:#9daec6;background:#f0f3f8}
+.events-toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:22px 0}
+.search{width:min(100%,390px);border:1px solid #cad8ec;background:white;padding:13px 15px;border-radius:12px;font:inherit;outline:none}
+.search:focus{border-color:#149ec4;box-shadow:0 0 0 3px rgba(37,213,237,.15)}
+.events-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.event-card{display:flex;flex-direction:column;align-items:flex-start}
+.event-card p{font-size:.9rem;color:#526785;margin:0;flex:1}
+.event-card .meta{font-size:.75rem;color:#1785a8;font-weight:800;margin:0 0 8px}
+.event-card .btn{margin-top:16px}
+.speaker-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.speaker-card .price{font-size:1.15rem;color:var(--blue);font-weight:900;margin:10px 0}
+.speaker-card p{margin:8px 0;color:#526785;font-size:.91rem}
+.speaker-card a{color:#087ea7;font-weight:700}
+.note{background:#eef6ff;border:1px solid #d7e7fa;padding:16px 18px;border-radius:14px;color:#385477;font-size:.9rem}
+footer{background:#061947;color:#dce9ff;padding:34px 24px;text-align:center}
+footer strong{color:white;letter-spacing:.08em}
+.hidden{display:none!important}
+@media(max-width:900px){.schedule{grid-template-columns:repeat(2,minmax(0,1fr))}.nav{align-items:flex-start;flex-direction:column}.opening{grid-template-columns:1fr}}
+@media(max-width:620px){.navlinks{gap:12px}.navlinks a{font-size:.76rem}.hero-inner{padding:60px 22px 90px}main{padding:0 16px 60px}.grid,.events-grid,.speaker-grid,.schedule{grid-template-columns:1fr}.intro-card,.opening{padding:22px}.hero-note{font-size:.78rem}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <nav class="nav">
+    <div class="brand">SESI <span>PARANÁ</span> · SEMANA PEDAGÓGICA</div>
+    <div class="navlinks">
+      <a href="#conceito">Conceito</a><a href="#organizacao">Organização</a><a href="#programacao">Programação</a><a href="#pautas">Pautas e acessos</a><a href="#palestrantes">Abertura</a>
+    </div>
+  </nav>
+</header>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SESI PARANÁ · SEMANA PEDAGÓGICA</div>
+    <div class="year">JANEIRO 2027</div>
+    <h1>A aprendizagem<br>em foco.</h1>
+    <p class="subtitle">Ciência, evidências e intencionalidade pedagógica.</p>
+    <div class="hero-note">25 a 28 de janeiro de 2027 <span>·</span> Encontros, reflexões e práticas</div>
+  </div>
+</header>
+
+<main>
+<section id="conceito">
+  <div class="section-kicker">O sentido do nosso encontro</div>
+  <h2>Quando a aprendizagem está em foco, toda escolha pedagógica importa.</h2>
+  <div class="intro-card">
+    <p class="lead">Em 2026, convidamos nossa Rede a refletir sobre o mundo que ajudamos a construir. Em 2027, o convite é para voltar o olhar ao que está no centro da nossa atuação: <strong>a aprendizagem.</strong></p>
+    <p>Colocar a aprendizagem em foco significa olhar para a prática pedagógica com mais profundidade, buscando compreender não apenas o que fazemos, mas por que fazemos, o que as evidências nos mostram e quais escolhas favorecem efetivamente a aprendizagem dos nossos estudantes.</p>
+    <p>Esse conceito aproxima ciência, evidências e intencionalidade pedagógica, reconhecendo o conhecimento produzido sobre como as pessoas aprendem como um importante aliado das decisões que fazemos todos os dias. Planejar, ensinar, observar, avaliar e replanejar tornam-se partes de um mesmo processo: compreender a aprendizagem para qualificar a prática.</p>
+    <p>Mais do que oferecer respostas prontas, a proposta convida à investigação e à reflexão sobre a própria prática. Evidências ganham significado quando dialogam com o contexto, com o conhecimento profissional e com as necessidades reais dos estudantes.</p>
+    <p>Assim, a intencionalidade está nas escolhas. No modo como planejamos uma experiência, fazemos uma pergunta, propomos um desafio, acompanhamos uma aprendizagem ou revemos um caminho.</p>
+    <div class="quote">Quando a aprendizagem está em foco, toda escolha pedagógica importa!</div>
+  </div>
+</section>
+
+<section id="organizacao">
+  <div class="section-kicker">Como vai funcionar</div>
+  <h2>Organização da Semana</h2>
+  <p class="lead">Nesta edição, considerando o período de transição para o novo canal que está sendo implantado pelo RH, a Semana Pedagógica terá sua organização apoiada pelo AVA/Moodle Sesi, que concentrará as pautas, links para as reuniões ao vivo, gravações das reuniões e os materiais complementares. As reuniões serão organizadas pelo Teams.</p>
+  <div class="grid">
+    <article class="info-card"><span class="pill">Canal de referência</span><h3>AVA/Moodle Sesi</h3><p class="muted">Espaço de concentração das pautas, links de acesso às reuniões ao vivo, gravações e materiais complementares.</p></article>
+    <article class="info-card"><span class="pill">Encontros ao vivo</span><h3>Microsoft Teams</h3><p class="muted">As reuniões temáticas serão organizadas pelo Teams. Cada pauta possui seu link de acesso na seção de programação e recursos.</p></article>
+  </div>
+</section>
+
+<section id="abertura">
+  <div class="section-kicker">25 de janeiro · segunda-feira</div>
+  <h2>Abertura da Semana Pedagógica</h2>
+  <div class="opening">
+    <div>
+      <div class="small-label">Encontro de abertura</div>
+      <h3>Um início de ano para colocar a aprendizagem em foco.</h3>
+      <p>A abertura acontecerá presencialmente no Auditório Mário de Mari, com transmissão pelo YouTube para as demais unidades.</p>
+      <a class="btn" href="https://youtube.com/live/3BURH2gsN54" target="_blank" rel="noopener">Assistir à transmissão ↗</a>
+    </div>
+    <div>
+      <div class="small-label">Fala de abertura · Gestão Sesi Paraná</div>
+      <div class="person"><strong>Hugo Armando Ceron Molina</strong><span>Superintendente Sesi</span></div>
+      <div class="person"><strong>Raquel de Oliveira e Silva do Nascimento</strong><span>Gerente Sênior de Educação e Cultura do Sesi Paraná</span></div>
+      <div class="person"><strong>Palestrante</strong><span>Em análise</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="programacao">
+  <div class="section-kicker">25 a 28 de janeiro de 2027</div>
+  <h2>Programação</h2>
+  <p class="muted">Consulte os encontros previstos para cada dia. Os links de acesso às salas estão reunidos na seção “Pautas e acessos”.</p>
+  <div class="schedule">
+    <article class="day-card">
+      <div class="day-head"><div class="date">25/01</div><strong>Segunda-feira</strong></div>
+      <div class="session"><time>8h30 – 10h30</time><strong>Abertura Semana Pedagógica</strong><small>Gestão Sesi · Todos</small></div>
+      <div class="session unit"><time>Manhã e noite</time><strong>Pauta da Unidade</strong></div>
+      <div class="session"><time>14h – 15h30</time><strong>Itinerários Formativos de Aprofundamento</strong><small>Maurício Bisetto · EJA – Orientador Pedagógico</small></div>
+      <div class="session"><time>15h30 – 17h</time><strong>SGE</strong><small>Maria Cecília Cruz · Todos</small></div>
+      <div class="session unit"><time>19h – 20h</time><strong>Pauta da Unidade</strong></div>
+    </article>
+    <article class="day-card">
+      <div class="day-head"><div class="date">26/01</div><strong>Terça-feira</strong></div>
+      <div class="session"><time>8h – 9h</time><strong>Atualizações no Sistema Avaliativo 2027</strong><small>Ana Inglat, Jean Andrade e Felipe Portela · Colégio Sesi Regular</small></div>
+      <div class="session"><time>9h – 10h</time><strong>Portfólio ECO 2027</strong><small>Gerusa Húngaro · Colégio Sesi Regular e Internacional</small></div>
+      <div class="session"><time>10h – 11h</time><strong>Educação Infantil</strong><small>Márcio Garcia e Mariana Brum</small></div>
+      <div class="session"><time>11h – 12h</time><strong>Parceria IEL</strong><small>IEL · Todos</small></div>
+      <div class="session"><time>14h – 15h30</time><strong>Organização do Trabalho Pedagógico</strong><small>Jaqueline França, Amanda Krauss e Maurício Bisetto · Mentes Criativas – Orientador Pedagógico</small></div>
+      <div class="session"><time>15h30 – 17h30</time><strong>Competência 2 da Matriz Formativa: Plataformas de Trabalho</strong><small>Marina Perbiche e Pedro Gonçalves · EJA – Orientador Pedagógico</small></div>
+      <div class="session"><time>19h – 20h30</time><strong>Rubricas</strong><small>Valdoir Oliveira e Amanda Krauss · EJA – Professores</small></div>
+    </article>
+    <article class="day-card">
+      <div class="day-head"><div class="date">27/01</div><strong>Quarta-feira</strong></div>
+      <div class="session"><time>8h – 9h</time><strong>Itinerários Formativos 3ª série</strong><small>Analistas GSEC · Todos</small></div>
+      <div class="session"><time>9h – 10h</time><strong>Educação Inclusiva na Prática: do acesso à aprendizagem</strong><small>Josiane Martins · Todos</small></div>
+      <div class="session"><time>10h – 11h</time><strong>Recomposição da Aprendizagem (MAP)</strong><small>Caroline Silva e Jean Andrade · Colégio Sesi Regular</small></div>
+      <div class="session"><time>11h – 12h</time><strong>Clubes e Afterschools – Manual</strong><small>Gerusa Húngaro · Colégio Sesi Regular e Internacional</small></div>
+      <div class="session"><time>14h – 15h30</time><strong>Planejamento Docente – Oficinas</strong><small>Jaqueline França, Amanda Krauss e Maurício Bisetto · Mentes Criativas – Professores</small></div>
+      <div class="session"><time>15h30 – 17h30</time><strong>Pense</strong><small>Marina Perbiche e Pedro Gonçalves · EJA – Orientador Pedagógico</small></div>
+      <div class="session"><time>19h – 20h30</time><strong>Inclusão na EJA</strong><small>Marina Perbiche, Pedro Gonçalves e Josiane Martins · EJA – Professores</small></div>
+    </article>
+    <article class="day-card">
+      <div class="day-head"><div class="date">28/01</div><strong>Quinta-feira</strong></div>
+      <div class="session unit"><time>Manhã e tarde</time><strong>Pauta da Unidade</strong></div>
+      <div class="session"><time>14h – 15h</time><strong>Plano de Trabalho 2027 – Diretrizes e Alinhamentos</strong><small>Josiane Martins · Psicólogos Escolares</small></div>
+      <div class="session unit"><time>Demais horários</time><strong>Pauta da Unidade</strong></div>
+    </article>
+  </div>
+  <p class="note" style="margin-top:18px">A programação acima reproduz a organização apresentada no material de referência. Horários, responsáveis e públicos devem ser validados antes da publicação definitiva.</p>
+</section>
+
+<section id="pautas">
+  <div class="section-kicker">Conteúdos e recursos</div>
+  <h2>Pautas e acessos</h2>
+  <p class="lead">Explore os temas da Semana Pedagógica e acesse diretamente as salas virtuais. Use a busca para localizar uma pauta.</p>
+  <div class="events-toolbar">
+    <input class="search" id="eventSearch" type="search" placeholder="Buscar por tema ou palavra-chave..." aria-label="Buscar pautas">
+    <span class="muted" id="eventCount">17 pautas e recursos</span>
+  </div>
+  <div class="events-grid" id="eventsGrid">
+    <article class="event-card"><div class="meta">ABERTURA · YOUTUBE</div><h3>Abertura – Semana Pedagógica Sesi Janeiro 2027</h3><p>Evento de abertura com fala da Gestão Sistema Fiep e palestra inspiradora para o início do ano letivo. Encontro presencial no Auditório Mário de Mari, com transmissão para as demais unidades.</p><a class="btn" href="https://youtube.com/live/3BURH2gsN54" target="_blank" rel="noopener">Acessar transmissão ↗</a></article>
+    <article class="event-card"><div class="meta">EJA · ORIENTADOR PEDAGÓGICO</div><h3>Itinerários Formativos de Aprofundamento</h3><p>Apresentação da organização e das orientações para implementação dos itinerários da EJA SESI-PR, alinhando as equipes para uma oferta coerente com as diretrizes institucionais.</p><a class="btn" href="https://teams.microsoft.com/meet/2338718116935816?p=7lKFPG7JeAjODpG2On" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">TODOS</div><h3>SGE</h3><p>Apresentação da nova ferramenta para o professor: plano de aula e registros da atividade docente, com a exclusão do Portal Oficinas.</p><a class="btn" href="https://teams.microsoft.com/meet/258018689115950?p=62FDdvuAei0UbvgYjY" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">COLÉGIO SESI REGULAR</div><h3>Atualizações no Sistema Avaliativo 2027</h3><p>Apresentação das atualizações do Sistema Avaliativo SESI 2027 e do novo Guia do Sistema Avaliativo, contemplando Educação Infantil, Ensino Fundamental e Ensino Médio. Principais mudanças, organização das avaliações e orientações gerais para cada etapa.</p><a class="btn" href="https://teams.microsoft.com/meet/2828312477016190?p=Vv5KGsh5fOAGTirdzd" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">COLÉGIO SESI REGULAR E INTERNACIONAL</div><h3>Portfólio ECO 2027</h3><p>Apresentação do novo Portfólio ECO 2027, contemplando produtos e soluções disponíveis para o próximo ano. A pauta abordará características de cada oferta, públicos-alvo, formas de operacionalização e principais lançamentos.</p><a class="btn" href="https://teams.microsoft.com/meet/2951764378610157?p=zGur2a8iSweWpBPAcr" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">EDUCAÇÃO INFANTIL</div><h3>Educação Infantil</h3><p>Indicadores de Qualidade da Educação Infantil e ERER – Educação para as Relações Étnico-Raciais.</p><a class="btn" href="https://teams.microsoft.com/meet/2988738487395583?p=oqOpoU7fjeVKbMiJWo" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">TODOS</div><h3>Parceria IEL</h3><p>Temática de orientação para a Educação Profissional e Orientação de Carreira.</p><a class="btn" href="https://teams.microsoft.com/meet/2497071914795537?p=BGiJHKDQmY331f95Ms" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">MENTES CRIATIVAS · ORIENTADOR PEDAGÓGICO</div><h3>Organização do Trabalho Pedagógico</h3><p>Fortalecimento do planejamento, organização e acompanhamento pedagógico, com foco na Matriz de Habilidades, nas ações de contraturno e no monitoramento das oficinas e percursos de aprendizagem, garantindo maior intencionalidade e coerência às práticas pedagógicas.</p><a class="btn" href="https://teams.microsoft.com/meet/2318122880842616?p=5aG0Ay40Lqf19K6OtO" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">EJA · ORIENTADOR PEDAGÓGICO</div><h3>Competência 2 da matriz formativa: plataformas de trabalho</h3><p>Desenvolvimento do uso pedagógico dos Ambientes Virtuais de Aprendizagem (AVA), fortalecendo a mediação, o acompanhamento dos estudantes e a utilização intencional dos recursos digitais na Nova EJA SESI.</p><a class="btn" href="https://teams.microsoft.com/meet/2867971259724300?p=jPYtVPK0DqdQfdjIDI" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">EJA · PROFESSORES</div><h3>Rubricas</h3><p>Aprofundamento do uso de rubricas como instrumentos de avaliação na EJA, com foco na definição de critérios e níveis de desempenho, qualificando as práticas avaliativas, os feedbacks e o acompanhamento da aprendizagem dos estudantes.</p><a class="btn" href="https://teams.microsoft.com/meet/2950199698290885?p=cTarZPN1rHbR7oG45m" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">TODOS</div><h3>Itinerário Formativo da 3ª série do Ensino Médio</h3><p>Apresentação dos itinerários de Engenharia e STEM e Design e Cultura Maker, abordando a estrutura de cada caderno, os eixos norteadores e a relevância do Projeto Integrador como objetivo final de cada itinerário. Também serão apresentadas a Matriz e o referencial curricular construído para a 3ª série do EM.</p><a class="btn" href="https://teams.microsoft.com/meet/2329015874651948?p=uWuaWlDtGdq2GxBDtZ" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">TODOS</div><h3>Educação Inclusiva na prática: do acesso à aprendizagem</h3><p>Foco nas diretrizes e práticas da Educação Inclusiva no SESI Paraná, abordando PEI, AEE e estratégias acessíveis para transformar orientações em ações que promovam participação, pertencimento e aprendizagem para todos.</p><a class="btn" href="https://teams.microsoft.com/meet/2729504195805988?p=EncSY07dhIcQZLEqzZ" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">COLÉGIO SESI REGULAR</div><h3>Recomposição da Aprendizagem (MAP)</h3><p>Apresentação do escopo de trabalho para 2027 – abrangência, modo de trabalho, estratégias e boas práticas –, seguindo o direcionamento do DN.</p><a class="btn" href="https://teams.microsoft.com/meet/2686212411751375?p=JZolky5cwLrBCrpzOB" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">COLÉGIO SESI REGULAR E INTERNACIONAL</div><h3>Clubes e Afterschools – manual</h3><p>Apresentação do novo Manual de Clubes e Afterschools, com as diretrizes para a oferta das atividades realizadas no contraturno do Colégio Sesi, incluindo as oficinas culturais. Orientações para a organização e o desenvolvimento dessas atividades.</p><a class="btn" href="https://teams.microsoft.com/meet/2660306955494836?p=2nNmPkiZwr9THlnPEm" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">MENTES CRIATIVAS · PROFESSORES</div><h3>Planejamento docente – oficinas</h3><p>Vivência prática de oficinas do Caderno Pedagógico, articulando planejamento, habilidades e intencionalidade pedagógica, com estratégias de mediação e adaptação que valorizem o protagonismo dos estudantes e promovam aprendizagens significativas.</p><a class="btn" href="https://teams.microsoft.com/meet/2491559808268546?p=T9fh4IURqcd04ym7t6" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">EJA · ORIENTADOR PEDAGÓGICO</div><h3>Pense</h3><p>Apropriação da plataforma pelos pedagogos para organização, acompanhamento e análise dos processos pedagógicos da Nova EJA SESI, apoiando a orientação das equipes e o acompanhamento dos estudantes.</p><a class="btn" href="https://teams.microsoft.com/meet/2661286669572537?p=FB7WPxW9D0F4xE87SW" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">EJA · PROFESSORES</div><h3>Inclusão na EJA</h3><p>Desenvolvimento de práticas inclusivas e acessíveis, considerando a diversidade, as trajetórias e as diferentes formas de aprender dos estudantes da EJA, com foco na superação de barreiras, participação, permanência e aprendizagem de todos.</p><a class="btn" href="https://teams.microsoft.com/meet/2163725827911129?p=XcG93S4sH6IuFkRgPc" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+    <article class="event-card"><div class="meta">PSICÓLOGOS ESCOLARES</div><h3>Plano de Trabalho 2027 – Diretrizes e Alinhamentos</h3><p>Atuação do psicólogo escolar na inclusão. Diretrizes e alinhamento com a equipe de Psicólogos Escolares e estratégias socioemocionais com os estudantes.</p><a class="btn" href="https://teams.microsoft.com/meet/2872363584987304?p=yduEsJ036lCwd3Dd4n" target="_blank" rel="noopener">Entrar na reunião ↗</a></article>
+  </div>
+  <p class="note" style="margin-top:18px">Os links direcionam às salas de reunião ou à transmissão indicadas para cada pauta. Recomenda-se testar os acessos e confirmar as permissões antes de divulgar o canal.</p>
+</section>
+
+<section id="palestrantes">
+  <div class="section-kicker">Referências para a abertura</div>
+  <h2>Possibilidades de palestrantes</h2>
+  <p class="muted">Nomes e informações reproduzidos do material de planejamento. A indicação de aderência e os valores são referências para análise, não uma confirmação de contratação.</p>
+  <div class="speaker-grid">
+    <article class="speaker-card">
+      <span class="pill">Aderência alta</span><h3>João Marcos Mendonça</h3>
+      <p>Criador da Escola de Passarinhos, autor, professor e roteirista da Mauricio de Sousa Produções.</p>
+      <p><strong>Tema:</strong> A escola que nos permite voar.</p>
+      <p><strong>Resumo:</strong> A palestra propõe uma reflexão sobre o papel do professor como agente de transformação e mobilizador de experiências significativas, apresentando que é possível criar oportunidades para que todos possam voar em direção aos seus sonhos.</p>
+      <div class="price">R$ 15.000,00</div><p>Todas as despesas inclusas.</p>
+      <a href="https://www.youtube.com/watch?v=z3WBU0NJ_xk" target="_blank" rel="noopener">Vídeo de referência ↗</a>
+    </article>
+    <article class="speaker-card">
+      <span class="pill">Aderência alta · Convidada DN</span><h3>Ana Luiza Neiva Amaral</h3>
+      <p>Doutora em Educação; atuação em Educação Baseada em Evidências, Neurociência e Educação e Inovação na Educação. Especialista em Educação no Departamento Nacional do Sesi – responsável pelo Programa Passe.</p>
+      <p><strong>Tema:</strong> Programa Passe e Avalia Sesi: A aprendizagem em foco: Ciência, evidências e intencionalidade pedagógica.</p>
+      <p><strong>Resumo:</strong> Reflexão sobre como compreendemos os processos de aprendizagem, interpretamos evidências e transformamos conhecimentos científicos em práticas pedagógicas capazes de potencializar o desenvolvimento e os resultados dos estudantes.</p>
+      <div class="price">Convidada DN</div>
+      <a href="https://www.linkedin.com/feed/update/urn:li:activity:7434423242783752192/" target="_blank" rel="noopener">Publicação no LinkedIn ↗</a>
+    </article>
+    <article class="speaker-card">
+      <span class="pill">Aderência média</span><h3>Ana Paula Severiano</h3>
+      <p>Jornalista formada pela USP, professora de Redação e consultora educacional.</p>
+      <p><strong>Tema:</strong> De mãos dadas: O que significa ser educador hoje?</p>
+      <p><strong>Resumo:</strong> Construir a escola que queremos exige reconhecer os desafios, compreender nossas possibilidades de atuação e transformar intenções em práticas.</p>
+      <div class="price">R$ 10.000,00</div><p>Todas as despesas inclusas.</p>
+      <a href="https://www.bing.com/videos/riverview/relatedvideo?q=ana+paula+severiano&&mid=DED76CB97B4F04835BF7DED76CB97B4F04835BF7&churl=https%3a%2f%2fwww.youtube.com%2fchannel%2fUC2mmP8ysfyko40KSn90x6Og&FORM=VRDGAR" target="_blank" rel="noopener">Vídeo de referência ↗</a>
+    </article>
+    <article class="speaker-card">
+      <span class="pill">Aderência média · alinhar temática</span><h3>Eduardo Berndt</h3>
+      <p>Psicanalista, professor e administrador. Especialista em Neurociências e Comportamento.</p>
+      <p><strong>Tema:</strong> A neurologia da empatia e o papel da educação na formação de uma melhor humanidade.</p>
+      <p><strong>Resumo:</strong> Empatia é um processo de aprendizado. Na formação educacional, cada educador, independentemente de sua função, opera num papel único nessa formação. Estudar o tema reforça a importância do compromisso individual e possibilita o desenvolvimento como humanidade, com foco no ganho coletivo.</p>
+      <div class="price">R$ 7.500,00</div><p>Todas as despesas inclusas.</p>
+      <a href="https://palestranteeduardoberndt.com.br/quem-sou/" target="_blank" rel="noopener">Perfil do palestrante ↗</a>
+    </article>
+    <article class="speaker-card">
+      <span class="pill">Aderência alta</span><h3>Lilian Bacich</h3>
+      <p>Professora e pesquisadora, diretora da Tríade Educacional. Mestra em Educação: Psicologia da Educação pela PUC-SP; doutora em Psicologia Escolar e do Desenvolvimento Humano pela USP; pós-doutorado pelo Instituto de Estudos Avançados da USP.</p>
+      <p><strong>Tema:</strong> Avaliação para a Aprendizagem: Ressignificando Práticas na Educação Básica.</p>
+      <p><strong>Resumo:</strong> A proposta é ressignificar a avaliação, deixando de ser apenas um instrumento de classificação para se tornar parte do processo de aprendizagem. Apresenta fundamentos da avaliação formativa e uso de evidências, experiências aplicáveis à educação básica e ao ensino superior e práticas em diferentes áreas, como linguagens, matemática, STEAM e inteligência artificial.</p>
+      <div class="price">Em cotação</div>
+    </article>
+  </div>
+</section>
+
+<section id="orientacoes">
+  <div class="section-kicker">Informações institucionais</div>
+  <h2>Um percurso integrado</h2>
+  <div class="intro-card">
+    <p>A Semana Pedagógica reúne momentos de alinhamento institucional, aprofundamento de pautas específicas e reflexão sobre as práticas que sustentam a aprendizagem dos estudantes.</p>
+    <p>As atividades contemplam diferentes públicos e frentes de atuação da Rede. A programação combina encontros gerais, momentos direcionados às equipes e pautas das unidades, respeitando os contextos e as necessidades de cada segmento.</p>
+    <p><strong>Gerência Sesi de Educação e Cultura</strong></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <strong>SESI PARANÁ · SEMANA PEDAGÓGICA 2027</strong>
+  <div>A aprendizagem em foco: Ciência, evidências e intencionalidade pedagógica.</div>
+  <div style="margin-top:10px;font-size:.8rem;opacity:.75">Gerência Sesi de Educação e Cultura</div>
+</footer>
+
 <script>
-const E=[
-['25','8h30–10h','Abertura Semana Pedagogica','Gestao SESI · Todos'],['25','10h–12h','Pauta da Unidade',''],['25','14h–15h30','Itinerarios Formativos de Aprofundamento','Mauricio Bisetto · EJA - Orientador Pedagogico'],['25','15h30–17h','SGE','Maria Cecilia Cruz · Todos'],['25','18h–21h','Pauta da Unidade',''],
-['26','8h–9h','Atualizacoes no Sistema Avaliativo 2027','Ana Inglat, Jean Andrade e Felipe Portela · Colegio SESI Regular'],['26','9h–10h','Portfolio ECO 2027','Gerusa Hungaro · Colegio SESI Regular e Internacional'],['26','10h–11h','Educacao Infantil','Marcio Garcia e Mariana Brum · Educacao Infantil'],['26','11h–12h','IEL','IEL · Todos'],['26','14h–15h30','Organizacao do Trabalho Pedagogico','Jaqueline Franca, Amanda Krauss e Mauricio Bisetto · Mentes Criativas - Orientador Pedagogico'],['26','15h30–17h30','Competencia 2 da Matriz Formativa: Plataformas de Trabalho','Marina Perbiche e Pedro Goncalves · EJA - Orientador Pedagogico'],['26','19h–20h30','Rubricas','Valdoir Oliveira e Amanda Krauss · EJA - Professores'],
-['27','8h–9h','Itinerarios Formativos 3a serie','Analistas GSEC · Todos'],['27','9h–10h','Educacao Inclusiva na Pratica: do acesso a aprendizagem','Josiane Martins · Todos'],['27','10h–11h','Recomposicao de Aprendizagem (MAP)','Caroline Silva e Jean Andrade · Colegio SESI Regular'],['27','11h–12h','Clubes e AfterSchools - Manual','Gerusa Hungaro · Colegio SESI Regular e Internacional'],['27','14h–15h30','Planejamento Docente - Oficinas','Jaqueline Franca, Amanda Krauss e Mauricio Bisetto · Mentes Criativas - Professores'],['27','15h30–17h30','PENSE','Marina Perbiche e Pedro Goncalves · EJA - Orientador Pedagogico'],['27','19h–20h30','Inclusao na EJA','Marina Perbiche, Pedro Goncalves e Josiane Martins · EJA - Professores'],
-['28','8h–12h','Pauta da Unidade',''],['28','14h–15h','Plano de Trabalho 2027 - Diretrizes e Alinhamentos','Josiane Martins · Psicologos Escolares'],['28','15h–18h','Pauta da Unidade',''],['28','18h–21h','Pauta da Unidade','']];
-const s=document.getElementById('schedule');function render(day='all'){s.innerHTML=E.filter(e=>day==='all'||e[0]===day).map(e=>`<article class="event ${e[2]==='Pauta da Unidade'?'unit':''}"><div class="time">${e[1]}</div><div><h3>${e[2]}</h3><div class="meta">${e[3]}</div></div></article>`).join('')};document.querySelectorAll('button[data-day]').forEach(b=>b.onclick=()=>{document.querySelectorAll('button[data-day]').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.day)});render();
-</script></body></html>
+const search = document.getElementById('eventSearch');
+const cards = [...document.querySelectorAll('#eventsGrid .event-card')];
+const count = document.getElementById('eventCount');
+search.addEventListener('input', () => {
+  const term = search.value.trim().toLocaleLowerCase('pt-BR');
+  let visible = 0;
+  cards.forEach(card => {
+    const match = card.innerText.toLocaleLowerCase('pt-BR').includes(term);
+    card.classList.toggle('hidden', !match);
+    if(match) visible++;
+  });
+  count.textContent = `${visible} ${visible === 1 ? 'pauta encontrada' : 'pautas encontradas'}`;
+});
+</script>
+</body>
+</html>
